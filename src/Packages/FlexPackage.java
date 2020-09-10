@@ -4,12 +4,15 @@ public class FlexPackage implements Package {
     private int limit;
     private int count;
     private double debt;
+    private double increment;
 
 
-    public FlexPackage(int limit, double price) {
+
+    public FlexPackage(int limit, double price, double increment) {
         this.setDebt(price);
         this.setLimit(limit);
         this.setPrice(price);
+        this.increment = increment;
         this.count = 0;
     }
 
@@ -40,7 +43,7 @@ public class FlexPackage implements Package {
     }
 
     public void increaseDebt() {
-        this.debt += this.price;
+        this.debt += this.increment;
     }
 
     public double getPrice() {
