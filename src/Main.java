@@ -7,6 +7,7 @@ public class Main {
 //        LocalDateTime now = LocalDateTime.now().minusMonths(3);
         FlexPackage newFlexPackage =  new FlexPackage(1000, 0.1);
         FixedPackage newFixedPackage =  new FixedPackage(1000, 10);
+//        Sms sms = new Sms(now, newFlexPackage);
         Sms sms = new Sms(now, newFixedPackage);
         sms.setStartingDate(now);
 
@@ -30,17 +31,19 @@ public class Main {
         trendyol.addToCustomerList(customer2);
         trendyol.getCustomerList().forEach((i) -> System.out.println(i.getEmail() + " " + i.getPhone()));
 
-
+        Email email = new Email(now, newFlexPackage);
+//        Email email = new Email(now, newFixedPackage);
         sms.sendSmsToCustomers("Hello", trendyol.getCustomerList(), newFixedPackage);
+        email.sendEmailToCustomers("Hello", trendyol.getCustomerList(), newFixedPackage);
         for (int i = 0; i < 3500; i++){
             sms.sendSms(newFixedPackage, "Hello World", customer1.getPhone());
             System.out.printf("Debt %f, Quota: %d, Sms Count: %d\n",newFixedPackage.getDebt(), newFixedPackage.getLimit(), newFixedPackage.getCount());
         }
+        for (int i = 0; i < 3500; i++){
+            email.sendEmail(newFixedPackage, "Hello World", customer1.getEmail());
+            System.out.printf("Debt %f, Quota: %d, Sms Count: %d\n",newFixedPackage.getDebt(), newFixedPackage.getLimit(), newFixedPackage.getCount());
+        }
         System.out.println(newFixedPackage.getDebt());
-
-
-
-
 
 
 
